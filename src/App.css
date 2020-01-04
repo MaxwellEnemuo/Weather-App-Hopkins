@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: bisque;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
+.card{ box-shadow: 0 0px 2px 0 rgba(0, 0, 10, 0.2), 0 10px 15px 0 rgba(0, 0, 0, 0.19); transition: all 0.3s ease-in-out; }
+.card::after {content: '';position: absolute; z-index: -1;opacity: 0;border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: opacity 0.3s ease-in-out;
+}
+.card:hover { box-shadow: 0 0px 0.5px 0 rgba(0, 0, 0, 0.5), 0 0px 0px 0 rgba(0, 0, 0, 0.19);} 
+.card:hover::after {opacity: 1; }/* Fade in the pseudo-element with the bigger shadow */
+
