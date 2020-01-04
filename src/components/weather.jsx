@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import calCelsius from "./util/getLocation";
+import calCelsius from "../util/celsiusChange";
 import { usePosition } from "use-position";
 
 const API_KEY = "429736441cf3572838aa10530929f7cd";
