@@ -12,6 +12,7 @@ const Weather = () => {
   const [windSpeed, setWindSpeed] = useState("");
   const [celsius, setCelsius] = useState(0);
   const [description, setDescription] = useState("");
+  const [loading, setLoading] = useState(false);
   const [weatherIcon] = useState({Thunderstorm: "wi-thunderstorm", Drizzle: "wi-sleet", Rain: "wi-storm-showers", Snow: "wi-snow", Atmosphere: "wi-fog", Clear: "wi-day-sunny", Clouds: "wi-day-fog"});
 
   function getWeatherIcon(icons, rangeId) {
@@ -45,6 +46,7 @@ const Weather = () => {
   useEffect(() => {
     async function fetchData() {
       try {
+        setLoading(true);
         const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`);
         const response = await data.json();
   
@@ -55,6 +57,8 @@ const Weather = () => {
         setDescription(response.weather[0].description);
       
         getWeatherIcon(weatherIcon, response.weather[0].id);
+
+        setLoading(false)
 
       } catch (error) {
           console.log(error);
@@ -70,6 +74,7 @@ const Weather = () => {
       <div className="card col-6">
         <h1 className="py-3" style={{color: 'grey'}}>{city}</h1>
           <h5 className="py-4"><i className={`wi ${icon} display-1`} /></h5>
+          {loading ? <h5 className="py-4"> Loading...</h5> : ""}
 
           {/* Get Celsius */}
           {celsius ? ( <h1 className="py-2">{celsius}&deg;C</h1>) : null}
